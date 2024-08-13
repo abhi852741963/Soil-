@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDE5D4; /* Light background color */
+            color: #001524; /* Dark text color */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #D6CC99; /* Light beige background */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #445d48; /* Greenish color for headers */
+            margin-bottom: 20px;
+        }
+        #resultText {
+            font-size: 18px;
+            text-align: center;
+            color: #445d48; /* Matching color for result text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Result</h1>
+        <p id="resultText"></p>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            const score = localStorage.getItem('quizScore');
+            const userName = localStorage.getItem('userName');
+            if (score && document.getElementById('resultText')) {
+                document.getElementById('resultText').textContent = `Hello, ${userName}! Your score is ${score}.`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDE5D4; /* Light background color */
+            color: #001524; /* Dark text color */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #D6CC99; /* Light beige background */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #445d48; /* Greenish color for headers */
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, p {
+            font-weight: bold;
+            color: #5E3023; /* Earthy brown color for labels */
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #445d48; /* Dark green button */
+            color: #FDE5D4; /* Light text color for button */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #5E3023; /* Darker brown for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Soil Quiz for <span id="userName"></span></h1>
+        <form id="quizForm">
+            <ol>
+                <li>
+                    <p>What is soil?</p>
+                    <input type="radio" name="q1" value="A" required> A. Rocks and minerals<br>
+                    <input type="radio" name="q1" value="B"> B. A mixture of organic matter, minerals, gases, liquids, and organisms<br>
+                    <input type="radio" name="q1" value="C"> C. Only minerals<br>
+                    <input type="radio" name="q1" value="D"> D. Only organic matter<br>
+                </li>
+                <li>
+                    <p>Which layer of soil is most fertile and contains the maximum amount of organic matter?</p>
+                    <input type="radio" name="q2" value="A" required> A. Topsoil<br>
+                    <input type="radio" name="q2" value="B"> B. Subsoil<br>
+                    <input type="radio" name="q2" value="C"> C. Bedrock<br>
+                    <input type="radio" name="q2" value="D"> D. None of the above<br>
+                </li>
+                <!-- Add more questions as needed -->
+            </ol>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            const userName = localStorage.getItem('userName');
+            if (userName && document.getElementById('userName')) {
+                document.getElementById('userName').textContent = userName;
+            }
+        });
+
+        const correctAnswers = {
+            q1: 'B',
+            q2: 'A',
+            // Add more question answers here
+        };
+
+        document.getElementById('quizForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let score = 0;
+            const formData = new FormData(event.target);
+            for (let [question, answer] of formData.entries()) {
+                if (correctAnswers[question] === answer) {
+                    score++;
+                }
+            }
+            localStorage.setItem('quizScore', score);
+            window.location.href = 'result.html';
+        });
+    </script>
+</body>
+</html>
