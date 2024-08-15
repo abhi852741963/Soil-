@@ -23,11 +23,16 @@
             padding: 20px;
             width: 80%;
             max-width: 600px;
-            text-align: center;
         }
 
         h1 {
+            text-align: center;
             color: #333;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
         }
 
         button {
@@ -40,7 +45,23 @@
             color: #ffffff;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 20px;
         }
 
-       
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Score</h1>
+        <p id="score"></p>
+        <button onclick="window.location.href='index.html'">Take Quiz Again</button>
+    </div>
+
+    <script>
+        const score = localStorage.getItem('quizScore');
+        document.getElementById('score').innerText = `You scored ${score} out of 10.`;
+    </script>
+</body>
+</html>
